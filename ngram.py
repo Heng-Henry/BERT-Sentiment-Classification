@@ -34,9 +34,7 @@ class Ngram:
         E.g.,
             model: (I -> am): 10, (I -> want): 5, ...
         '''
-        # TO-DO 1-1: (You can use the hint code between begin and end or just delete it.)
-        # begin your code
-
+ 
 
         count_bigram = defaultdict(int)
 
@@ -74,7 +72,7 @@ class Ngram:
 
 
 
-        # end your code
+
         
         
         
@@ -84,7 +82,7 @@ class Ngram:
         '''
         corpus = [['[CLS]'] + self.tokenize(document) for document in df['review']]     # [CLS] represents start of sequence
         
-        # You may need to change the outputs, but you need to keep self.model at least.
+   
         self.model, self.features = self.get_ngram(corpus)
 
     def compute_perplexity(self, df_test) -> float:
@@ -124,22 +122,12 @@ class Ngram:
             train_corpus_embedding: array-like of shape (n_samples_train, n_features)
             test_corpus_embedding: array-like of shape (n_samples_train, n_features)
         
-        E.g.,
-            Assume the features are [(I saw), (saw a), (an apple)],
-            the embedding of the tokenized sentence ['[CLS]', 'I', 'saw', 'a', 'saw', 'saw', 'a', 'saw', '.'] will be
-            [1, 2, 0]
-            since the bi-gram of the sentence contains
-            [([CLS] I), (I saw), (saw a), (a saw), (saw saw), (saw a), (a saw), (saw .)]
-            The number of (I saw) is 1, the number of (saw a) is 2, and the number of (an apple) is 0.
-        '''
-        # TO-DO 1-2
-        # begin your code
 
-        # step 1. select the most feature_num patterns as features, you can adjust feature_num for better score!
+        '''
+  
+
         feature_num = 500
 
-        # step 2. convert each sentence in both training data and testing data to embedding.
-        # Note that you should name "train_corpus_embedding" and "test_corpus_embedding" for feeding the model.
         self.train(df_train)
 
         # Record
@@ -256,7 +244,7 @@ class Ngram:
         '''
 
 
-        # end your code
+
 
         # feed converted embeddings to Naive Bayes
         nb_model = GaussianNB()
@@ -271,8 +259,7 @@ class Ngram:
 
 if __name__ == '__main__':
     '''
-    Here is TA's answer of part 1 for reference only.
-    {'a': 0.5, 'saw: 0.25, '.': 0.25}
+
 
     Explanation:
     (saw -> a): 2
@@ -288,7 +275,7 @@ if __name__ == '__main__':
     P(. | saw) = 0.25
     '''
 
-    # unit test
+
     test_sentence = {'review': ['I saw a saw saw a saw.']}
     model = Ngram(2)
     model.train(test_sentence)
