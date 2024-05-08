@@ -18,13 +18,13 @@ warnings.filterwarnings("ignore")
 
 
 def prepare_data():
-    # do not modify
+
     df_train = pd.read_csv('./data/IMDB_train.csv')
     df_test = pd.read_csv('./data/IMDB_test.csv')
     return df_train, df_test
 
 def get_argument():
-    # do not modify
+  
     opt = argparse.ArgumentParser()
     opt.add_argument("--model_type",
                         type=str,
@@ -135,8 +135,7 @@ def train(model_type, model, train_dataloader, test_dataloader, optimizer, loss_
     labels: the correct labels set for the test set
     pred: the predicted labels set for the test set
     '''
-    # TO-DO 2-2: Implement the training function
-    # BEGIN YOUR CODE
+
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model.to(device)
@@ -155,8 +154,7 @@ def train(model_type, model, train_dataloader, test_dataloader, optimizer, loss_
             loss.backward()
             optimizer.step()
             total_loss += loss.item()
-          #  if batch%100 == 0:
-               # loss,cu
+ 
 
         # testing stage
         model.eval()
@@ -176,13 +174,13 @@ def train(model_type, model, train_dataloader, test_dataloader, optimizer, loss_
         avg_loss = round(total_loss/len(train_dataloader), 4)
         print(f"Epoch: {epoch}, F1 score: {f1}, Precision: {precision}, Recall: {recall}, Loss: {avg_loss}")
 
-    # END YOUR CODE
+   
     
 if __name__ == '__main__':
     # get argument
     config = get_argument()
     model_type, preprocessed = config['model_type'], config['preprocess']
-    N = 2 # we only use bi-gram in this assignment, but you can try different N
+    N = 2 
 
     # read and prepare data
     df_train, df_test = prepare_data()
@@ -190,15 +188,14 @@ if __name__ == '__main__':
     df_train['sentiment'] = df_train['sentiment'].map(label_mapping)
     df_test['sentiment'] = df_test['sentiment'].map(label_mapping)
 
-    # feel free to add more text preprocessing method
+    
     if preprocessed:
         df_train['review'] = df_train['review'].apply(preprocessing_function)
         df_test['review'] = df_test['review'].apply(preprocessing_function)
 
     if config['part'] == 1:
-        # part 1: implement bi-gram model
+       
         first_part(model_type, df_train, df_test, N)
     elif config['part'] == 2:
-        # part 2: implement your nn model from scratch
-        # part 3: implement your nn model from other pre-trained model
+
         second_part(model_type, df_train, df_test, N)
