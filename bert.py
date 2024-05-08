@@ -31,15 +31,15 @@ class BERT_IMDB(nn.Module):
         self.pretrained_model = AutoModel.from_pretrained(
             pretrained_type, num_labels=num_labels)
         
-        # TO-DO 2-1: Construct a classifier
-        # BEGIN YOUR CODE
+        # Construct a classifier here
+
         #####
         self.classifier = nn.Sequential(
             nn.Linear(784, 512),
             nn.Dropout(0.15),
             nn.Linear(512, num_labels)
         )
-        # END YOUR CODE
+ 
 
     def forward(self, **pretrained_text):
         outputs = self.pretrained_model(**pretrained_text).last_hidden_state
