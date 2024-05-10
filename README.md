@@ -23,6 +23,8 @@ original text or not,It allows the model to learn the
 relationships between sentences,which can be useful for tasks 
 such as natural language inference and question answering. 
 
+
+
 ## THE DIFFERENCE BETWEEN BERT AND DISTILBERT 
 ### 1. Model size: 
 BERT is a larger model whereas DistilBERT is a smaller and 
